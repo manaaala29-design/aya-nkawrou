@@ -1,0 +1,23 @@
+{
+  "overview": "Plateforme web sportive pour organiser des matchs de football à Mahdia : comptes joueurs, réservation de terrains avec paiement sécurisé, équipes, matchs et tableau de bord admin.",
+  "features": [
+    "Créer un compte joueur avec profil, poste et niveau",
+    "Réserver l'un des 7 terrains de Mahdia avec paiement sécurisé",
+    "Confirmation de réservation avec numéro et QR code",
+    "Créer et gérer des équipes, inviter des joueurs",
+    "Créer des matchs et les partager sur les réseaux sociaux",
+    "Rechercher des joueurs disponibles ou une équipe",
+    "Tableau de bord admin avec statistiques et revenus",
+    "Interface en français, arabe et anglais"
+  ],
+  "category": "sports-booking",
+  "tags": [
+    "football",
+    "sports",
+    "booking",
+    "tunisia",
+    "teams",
+    "payments"
+  ],
+  "last_updated": "2026-10-06T19:46:47.358Z"
+}

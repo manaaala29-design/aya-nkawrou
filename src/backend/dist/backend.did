@@ -1,0 +1,350 @@
+type Value = 
+ variant {
+   "bool": bool;
+   float: float64;
+   "int": int;
+   "nat": nat;
+   "null";
+   "text": text;
+ };
+type UserRole__1 = 
+ variant {
+   admin;
+   guest;
+   user;
+ };
+type UserRole = 
+ variant {
+   admin;
+   captain;
+   referee;
+   user;
+   volunteer;
+ };
+type UserId = principal;
+type UpdateProfileInput = 
+ record {
+   city: text;
+   email: text;
+   firstName: text;
+   lastName: text;
+   level: PlayerLevel;
+   phone: text;
+   photoUrl: opt text;
+   position: PlayerPosition;
+   username: text;
+ };
+type Timestamp = int;
+type TeamView = 
+ record {
+   captain: UserId;
+   color: text;
+   createdAt: Timestamp;
+   description: text;
+   id: TeamId;
+   level: PlayerLevel;
+   logoUrl: opt text;
+   memberIds: vec UserId;
+   name: text;
+   playerCount: nat;
+ };
+type TeamId = nat;
+type ShareCard = 
+ record {
+   awayTeamName: text;
+   date: text;
+   fieldName: text;
+   homeTeamName: text;
+   location: text;
+   shareUrl: text;
+   time: text;
+ };
+type RevenuePoint = 
+ record {
+   amountDt: float64;
+   monthLabel: text;
+ };
+type Result__1 = 
+ variant {
+   err: Error;
+   ok;
+ };
+type Result = 
+ record {
+   hasMore: bool;
+   rows: vec vec Cell;
+ };
+type RegisterInput = 
+ record {
+   city: text;
+   email: text;
+   firstName: text;
+   lastName: text;
+   level: PlayerLevel;
+   password: text;
+   phone: text;
+   photoUrl: opt text;
+   position: PlayerPosition;
+   username: text;
+ };
+type PlayerStats = 
+ record {
+   assists: nat;
+   goals: nat;
+   matchesPlayed: nat;
+   rating: float64;
+   wins: nat;
+ };
+type PlayerSearchFilter = 
+ record {
+   availableAt: opt text;
+   availableToday: bool;
+   city: opt text;
+   level: opt PlayerLevel;
+   minRating: opt float64;
+   position: opt PlayerPosition;
+ };
+type PlayerProfile = 
+ record {
+   account: AccountView;
+   achievements: vec text;
+   stats: PlayerStats;
+   teamIds: vec nat;
+ };
+type PlayerPosition = 
+ variant {
+   defender;
+   goalkeeper;
+   midfielder;
+   striker;
+   winger;
+ };
+type PlayerLevel = 
+ variant {
+   beginner;
+   good;
+   intermediate;
+   professional;
+ };
+type PaymentResult = 
+ variant {
+   err: text;
+   ok: BookingView;
+ };
+type MatchView = 
+ record {
+   awayTeamId: TeamId;
+   createdAt: Timestamp;
+   date: text;
+   fieldId: FieldId;
+   homeTeamId: TeamId;
+   id: MatchId;
+   invitedPlayerIds: vec UserId;
+   level: PlayerLevel;
+   playerCount: nat;
+   pricePerPlayerDt: float64;
+   status: MatchStatus;
+   time: text;
+ };
+type MatchStatus = 
+ variant {
+   cancelled;
+   completed;
+   scheduled;
+ };
+type MatchId = nat;
+type FieldView = 
+ record {
+   available: bool;
+   distanceKm: float64;
+   id: FieldId;
+   imageUrl: opt text;
+   location: text;
+   name: text;
+   priceDt: float64;
+   rating: float64;
+   timeSlots: vec text;
+ };
+type FieldId = nat;
+type FieldFilter = 
+ record {
+   maxDistanceKm: opt float64;
+   maxPrice: opt float64;
+   minRating: opt float64;
+   timeSlot: opt text;
+ };
+type Error = 
+ variant {
+   AmbiguousAttribute: record {
+                         field: text;
+                         sources: vec text;
+                       };
+   FrontendOriginMismatch: record {
+                             expected: vec text;
+                             got: text;
+                           };
+   FrontendOriginsNotConfigured;
+   MalformedCandid;
+   MissingField: text;
+   MixedSsoSources: record {
+                      otherKeys: vec text;
+                      ssoKeys: vec text;
+                    };
+   NoAttributes;
+   Stale: record {ageNs: nat;};
+   UnknownNonce;
+   UntrustedSsoSource: record {domain: text;};
+ };
+type CreateTeamInput = 
+ record {
+   color: text;
+   description: text;
+   level: PlayerLevel;
+   logoUrl: opt text;
+   name: text;
+ };
+type CreateMatchInput = 
+ record {
+   awayTeamId: TeamId;
+   date: text;
+   fieldId: FieldId;
+   homeTeamId: TeamId;
+   level: PlayerLevel;
+   playerCount: nat;
+   pricePerPlayerDt: float64;
+   time: text;
+ };
+type CreateBookingInput = 
+ record {
+   date: text;
+   durationMinutes: nat;
+   fieldId: FieldId;
+   playerCount: nat;
+   teamName: text;
+   time: text;
+ };
+type Cell = 
+ record {
+   name: text;
+   value: Value;
+ };
+type BookingView = 
+ record {
+   createdAt: Timestamp;
+   date: text;
+   durationMinutes: nat;
+   fieldId: FieldId;
+   id: BookingId;
+   paymentReference: opt text;
+   playerCount: nat;
+   priceDt: float64;
+   status: BookingStatus;
+   teamName: text;
+   time: text;
+   userId: UserId;
+ };
+type BookingStatus = 
+ variant {
+   cancelled;
+   paid;
+   pending;
+ };
+type BookingId = nat;
+type AvailablePlayer = 
+ record {
+   available: bool;
+   availableAt: opt text;
+   city: text;
+   level: PlayerLevel;
+   position: PlayerPosition;
+   rating: float64;
+   userId: UserId;
+   username: text;
+ };
+type AvailabilityInput = 
+ record {
+   available: bool;
+   availableAt: opt text;
+ };
+type AuthResult = 
+ variant {
+   err: text;
+   ok: AccountView;
+ };
+type AdminStats = 
+ record {
+   totalBookings: nat;
+   totalMatches: nat;
+   totalPlayers: nat;
+   totalRevenueDt: float64;
+   totalTeams: nat;
+   totalUsers: nat;
+ };
+type AdminOverview = 
+ record {
+   bookingsByStatus: vec record {
+                           text;
+                           nat;
+                         };
+   revenueByMonth: vec RevenuePoint;
+   stats: AdminStats;
+ };
+type AccountView = 
+ record {
+   banned: bool;
+   city: text;
+   createdAt: Timestamp;
+   email: text;
+   firstName: text;
+   id: UserId;
+   lastName: text;
+   level: PlayerLevel;
+   phone: text;
+   photoUrl: opt text;
+   position: PlayerPosition;
+   role: UserRole;
+   username: text;
+ };
+service : {
+  _initialize_access_control: () -> ();
+  _internet_identity_sign_in_finish: () -> (Result__1);
+  _internet_identity_sign_in_start: () -> (blob);
+  addTeamPlayer: (teamId: nat, player: principal) -> (bool);
+  assignCallerUserRole: (user: principal, role: UserRole__1) -> ();
+  cancelBooking: (bookingId: nat) -> (bool);
+  confirmBookingPayment: (bookingId: nat, paymentReference: text) ->
+   (PaymentResult);
+  createBooking: (input: CreateBookingInput) -> (BookingView);
+  createMatch: (input: CreateMatchInput) -> (MatchView);
+  createTeam: (input: CreateTeamInput) -> (TeamView);
+  execute: (qJson: text) -> (Result) query;
+  getAccount: (user: principal) -> (opt AccountView) query;
+  getAdminOverview: () -> (AdminOverview) query;
+  getApiDoc: () -> (text) query;
+  getBooking: (bookingId: nat) -> (opt BookingView) query;
+  getCallerAccount: () -> (opt AccountView) query;
+  getCallerUserRole: () -> (UserRole__1) query;
+  getField: (id: nat) -> (opt FieldView) query;
+  getMatch: (matchId: nat) -> (opt MatchView) query;
+  getMatchShareCard: (matchId: nat) -> (opt ShareCard) query;
+  getPlayerProfile: (user: principal) -> (opt PlayerProfile) query;
+  getTeam: (teamId: nat) -> (opt TeamView) query;
+  inviteMatchPlayers: (matchId: nat, players: vec principal) -> (bool);
+  isCallerAdmin: () -> (bool) query;
+  listAccounts: () -> (vec AccountView) query;
+  listAllBookings: () -> (vec BookingView) query;
+  listFields: (filter: FieldFilter) -> (vec FieldView) query;
+  listMatches: () -> (vec MatchView) query;
+  listMyBookings: () -> (vec BookingView) query;
+  listTeams: () -> (vec TeamView) query;
+  login: (password: text) -> (AuthResult);
+  register: (input: RegisterInput) -> (AuthResult);
+  removeTeamPlayer: (teamId: nat, player: principal) -> (bool);
+  schema: () -> (text) query;
+  searchPlayers: (filter: PlayerSearchFilter) -> (vec AvailablePlayer) query;
+  setAccountBanned: (user: principal, banned: bool) -> (bool);
+  setFieldAvailability: (id: nat, available: bool) -> (bool);
+  setMyAvailability: (input: AvailabilityInput) -> ();
+  setTeamCaptain: (teamId: nat, newCaptain: principal) -> (bool);
+  updateProfile: (input: UpdateProfileInput) -> (AuthResult);
+}

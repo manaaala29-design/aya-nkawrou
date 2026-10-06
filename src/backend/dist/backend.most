@@ -1,0 +1,299 @@
+// Version: 4.0.0
+type AccessControlState__201339279 =
+  {
+    var adminAssigned : Bool;
+    userRoles : Map__230067015<Principal, UserRole__91647283>
+  };
+type Account__1026151617 =
+  {
+    banned : Bool;
+    city : Text;
+    createdAt : Timestamp__918952663;
+    email : Text;
+    firstName : Text;
+    id : UserId__196540555;
+    lastName : Text;
+    level : PlayerLevel__448947465;
+    passwordHash : Text;
+    phone : Text;
+    photoUrl : ?Text;
+    position : PlayerPosition__513107650;
+    role : UserRole__266436693;
+    username : Text
+  };
+type Account__990386381 =
+  {
+    banned : Bool;
+    city : Text;
+    createdAt : Int;
+    email : Text;
+    firstName : Text;
+    id : Principal;
+    lastName : Text;
+    level : PlayerLevel__884334822;
+    passwordHash : Text;
+    phone : Text;
+    photoUrl : ?Text;
+    position : PlayerPosition__852053998;
+    role : UserRole__182222901;
+    username : Text
+  };
+type AvailabilityInput__225678107 = {available : Bool; availableAt : ?Text};
+type AvailabilityInput__876089745 = {available : Bool; availableAt : ?Text};
+type BookingId__429964979 = BookingId__572944220;
+type BookingId__572944220 = Nat;
+type BookingStatus__668484470 = {#cancelled; #paid; #pending};
+type BookingStatus__866642965 = {#cancelled; #paid; #pending};
+type Booking__1057793126 =
+  {
+    createdAt : Timestamp__972749111;
+    date : Text;
+    durationMinutes : Nat;
+    fieldId : FieldId__408526608;
+    id : BookingId__429964979;
+    paymentReference : ?Text;
+    playerCount : Nat;
+    priceDt : Float;
+    status : BookingStatus__866642965;
+    teamName : Text;
+    time : Text;
+    userId : UserId__504011246
+  };
+type Booking__86127627 =
+  {
+    createdAt : Int;
+    date : Text;
+    durationMinutes : Nat;
+    fieldId : Nat;
+    id : Nat;
+    paymentReference : ?Text;
+    playerCount : Nat;
+    priceDt : Float;
+    status : BookingStatus__668484470;
+    teamName : Text;
+    time : Text;
+    userId : Principal
+  };
+type Data__44217153<K, V> = {var count : Nat__227979830; kvs : [var ?(K, V)]};
+type FieldId__33261436 = FieldId__419492813;
+type FieldId__408526608 = FieldId__419492813;
+type FieldId__419492813 = Nat;
+type FieldId__695812051 = FieldId__419492813;
+type Field__360609539 =
+  {
+    available : Bool;
+    distanceKm : Float;
+    id : Nat;
+    imageUrl : ?Text;
+    location : Text;
+    name : Text;
+    priceDt : Float;
+    rating : Float;
+    timeSlots : [Text]
+  };
+type Field__874249259 =
+  {
+    available : Bool;
+    distanceKm : Float;
+    id : FieldId__695812051;
+    imageUrl : ?Text;
+    location : Text;
+    name : Text;
+    priceDt : Float;
+    rating : Float;
+    timeSlots : [Text]
+  };
+type Internal__283199666<K, V> =
+  {children : [var ?Node__204828119<K, V>]; data : Data__44217153<K, V>};
+type Leaf__598469445<K, V> = {data : Data__44217153<K, V>};
+type Map__230067015<K, V> = Map__405889023<K, V>;
+type Map__405889023<K, V> = Map__603270868<K, V>;
+type Map__603270868<K, V> =
+  {var root : Node__204828119<K, V>; var size : Nat__227979830};
+type MatchId__543136929 = Nat;
+type MatchId__940322495 = MatchId__543136929;
+type MatchStatus__427144453 = {#cancelled; #completed; #scheduled};
+type MatchStatus__988444835 = {#cancelled; #completed; #scheduled};
+type Match__300018337 =
+  {
+    awayTeamId : Nat;
+    createdAt : Int;
+    date : Text;
+    fieldId : Nat;
+    homeTeamId : Nat;
+    id : Nat;
+    invitedPlayerIds : [Principal];
+    level : PlayerLevel__884334822;
+    playerCount : Nat;
+    pricePerPlayerDt : Float;
+    status : MatchStatus__988444835;
+    time : Text
+  };
+type Match__66421370 =
+  {
+    awayTeamId : TeamId__1045345379;
+    createdAt : Timestamp__798483807;
+    date : Text;
+    fieldId : FieldId__33261436;
+    homeTeamId : TeamId__1045345379;
+    id : MatchId__940322495;
+    invitedPlayerIds : [UserId__943723599];
+    level : PlayerLevel__1030350090;
+    playerCount : Nat;
+    pricePerPlayerDt : Float;
+    status : MatchStatus__427144453;
+    time : Text
+  };
+type Nat__227979830 = Nat__920180692;
+type Nat__920180692 = Nat;
+type NewActor__416082931 =
+  {
+    accessControlState : AccessControlState__201339279;
+    accounts : Map__230067015<Principal, Account__990386381>;
+    achievements : Map__230067015<Principal, [Text]>;
+    availability : Map__230067015<Principal, AvailabilityInput__876089745>;
+    bookingState : {var nextBookingId : Nat};
+    bookings : Map__230067015<Nat, Booking__86127627>;
+    emails : Map__230067015<Text, Principal>;
+    fields : Map__230067015<Nat, Field__360609539>;
+    matchState : {var nextMatchId : Nat};
+    matches : Map__230067015<Nat, Match__300018337>;
+    memberships : Map__230067015<Principal, [Nat]>;
+    stats : Map__230067015<Principal, PlayerStats__453672079>;
+    teamState : {var nextTeamId : Nat};
+    teams : Map__230067015<Nat, Team__48983588>;
+    usernames : Map__230067015<Text, Principal>
+  };
+type Node__204828119<K, V> =
+  {#internal : Internal__283199666<K, V>; #leaf : Leaf__598469445<K, V>};
+type OldActor__927544402 = {};
+type PlayerLevel__1008672150 =
+  {#beginner; #good; #intermediate; #professional};
+type PlayerLevel__1030350090 = PlayerLevel__1008672150;
+type PlayerLevel__448947465 = PlayerLevel__1008672150;
+type PlayerLevel__791645242 = PlayerLevel__1008672150;
+type PlayerLevel__884334822 =
+  {#beginner; #good; #intermediate; #professional};
+type PlayerPosition__513107650 = PlayerPosition__904476674;
+type PlayerPosition__852053998 =
+  {#defender; #goalkeeper; #midfielder; #striker; #winger};
+type PlayerPosition__904476674 =
+  {#defender; #goalkeeper; #midfielder; #striker; #winger};
+type PlayerStats__185981614 =
+  {
+    assists : Nat;
+    goals : Nat;
+    matchesPlayed : Nat;
+    rating : Float;
+    wins : Nat
+  };
+type PlayerStats__453672079 =
+  {
+    assists : Nat;
+    goals : Nat;
+    matchesPlayed : Nat;
+    rating : Float;
+    wins : Nat
+  };
+type TeamId__1045345379 = TeamId__900592005;
+type TeamId__375216474 = TeamId__900592005;
+type TeamId__900592005 = Nat;
+type Team__48983588 =
+  {
+    captain : Principal;
+    color : Text;
+    createdAt : Int;
+    description : Text;
+    id : Nat;
+    level : PlayerLevel__884334822;
+    logoUrl : ?Text;
+    memberIds : [Principal];
+    name : Text;
+    playerCount : Nat
+  };
+type Team__944861453 =
+  {
+    captain : UserId__430789461;
+    color : Text;
+    createdAt : Timestamp__681890557;
+    description : Text;
+    id : TeamId__375216474;
+    level : PlayerLevel__791645242;
+    logoUrl : ?Text;
+    memberIds : [UserId__430789461];
+    name : Text;
+    playerCount : Nat
+  };
+type Timestamp__301639476 = Int;
+type Timestamp__681890557 = Timestamp__301639476;
+type Timestamp__798483807 = Timestamp__301639476;
+type Timestamp__918952663 = Timestamp__301639476;
+type Timestamp__972749111 = Timestamp__301639476;
+type UserId__158757552 = Principal;
+type UserId__196540555 = UserId__158757552;
+type UserId__430789461 = UserId__158757552;
+type UserId__504011246 = UserId__158757552;
+type UserId__943723599 = UserId__158757552;
+type UserRole__182222901 = {#admin; #captain; #referee; #user; #volunteer};
+type UserRole__266436693 = UserRole__451090586;
+type UserRole__451090586 = {#admin; #captain; #referee; #user; #volunteer};
+type UserRole__91647283 = {#admin; #guest; #user};
+{
+  "20261006_000000" : OldActor__927544402 -> NewActor__416082931
+}
+actor  {
+  stable accessControlState :
+    {
+      var adminAssigned : Bool;
+      userRoles : Map__230067015<Principal, UserRole__91647283>
+    };
+  stable accounts :
+    {
+      var root : Node__204828119<Principal, Account__1026151617>;
+      var size : Nat__227979830
+    };
+  stable achievements :
+    {
+      var root : Node__204828119<Principal, [Text]>;
+      var size : Nat__227979830
+    };
+  stable availability :
+    {
+      var root : Node__204828119<Principal, AvailabilityInput__225678107>;
+      var size : Nat__227979830
+    };
+  stable bookingState : {var nextBookingId : Nat};
+  stable bookings :
+    {
+      var root : Node__204828119<Nat, Booking__1057793126>;
+      var size : Nat__227979830
+    };
+  stable emails :
+    {var root : Node__204828119<Text, Principal>; var size : Nat__227979830};
+  stable fields :
+    {
+      var root : Node__204828119<Nat, Field__874249259>;
+      var size : Nat__227979830
+    };
+  stable matchState : {var nextMatchId : Nat};
+  stable matches :
+    {
+      var root : Node__204828119<Nat, Match__66421370>;
+      var size : Nat__227979830
+    };
+  stable memberships :
+    {var root : Node__204828119<Principal, [Nat]>; var size : Nat__227979830};
+  stable stats :
+    {
+      var root : Node__204828119<Principal, PlayerStats__185981614>;
+      var size : Nat__227979830
+    };
+  stable teamState : {var nextTeamId : Nat};
+  stable teams :
+    {
+      var root : Node__204828119<Nat, Team__944861453>;
+      var size : Nat__227979830
+    };
+  stable usernames :
+    {var root : Node__204828119<Text, Principal>; var size : Nat__227979830}
+};
